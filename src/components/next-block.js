@@ -3,16 +3,16 @@ import GridSquare from './grid-square'
 import { connect } from 'react-redux'
 import { shapes } from '../utils'
 
+// Map State to props
+const mapStateToProps = (state) => {
+  return {
+    // Return nextShape as shape
+    shape: state.game.nextShape
+  }
+}
+
 // Draws the "next" block view showing the next block to drop
 class NextBlock extends Component {
-
-    // Map State to props
-  mapStateToProps = (state) => {
-    return {
-      // Return nextShape as shape
-      shape: state.game.nextShape
-    }
-  }
 
   makeGrid() {
     // deconstruct shape
@@ -27,7 +27,7 @@ class NextBlock extends Component {
       return rowArray.map((square, col) => {
         // If there is a 1 use the shape index
         const color = block[row][col] === 0 ? 0 : shape
-        return <GridSquare key={`${row}${col}`} color={0} />
+        return <GridSquare key={`${row}${col}`} color={color} />
       })})
     }
 
