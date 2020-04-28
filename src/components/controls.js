@@ -20,6 +20,9 @@ const mapDispatchToProps = () => {
 class Controls extends Component {
 
   render() {
+    
+    const { isRunning } = this.props
+
     return (
       <div className="controls">
         {/* left */}
