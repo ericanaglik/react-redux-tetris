@@ -22,9 +22,9 @@ class MessagePopup extends Component {
       message = '???'
     }
     return (
-      <div className='message-popup'>
-        <h1>Message Title</h1>
-        <p>Message info...</p>
+      <div className={`message-popup ${isHidden}`}>
+        <h1>{message}</h1>
+        <p></p>
       </div>
     )
   }
