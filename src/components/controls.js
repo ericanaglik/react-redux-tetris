@@ -4,7 +4,8 @@ import { moveDown, moveLeft, moveRight, rotate } from '../actions'
 
 const mapStateToProps = (state) => {
   return {
-      isRunning: state.game.isRunning
+      isRunning: state.game.isRunning,
+      gameOver: state.game.gameOver
   }
 }
 
@@ -20,8 +21,8 @@ const mapDispatchToProps = () => {
 class Controls extends Component {
 
   render() {
-    
-    const { isRunning } = this.props
+
+    const { isRunning, gameOver } = this.props
 
     return (
       <div className="controls">
