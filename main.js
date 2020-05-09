@@ -1,4 +1,5 @@
 const { app, BrowserWindow } = require('electron')
+const isDev = require('electron-is-dev')
 
 function createWindow () {
   // Create the browser window.
@@ -11,7 +12,11 @@ function createWindow () {
   })
 
   // and load the index.html of the app.
-  win.loadFile('build/index.html')
+  win.loadURL(
+    isDev
+      ? 'http://localhost:3000'
+      : `file://${path.join(__dirname, '../build/index.html')}`,
+  )
 }
 
 app.whenReady().then(createWindow)

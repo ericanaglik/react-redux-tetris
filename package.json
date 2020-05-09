@@ -16,11 +16,22 @@
     "react-scripts": "3.4.1",
     "redux": "^4.0.5"
   },
+  "build": {
+    "appId": "com.example.electron-cra",
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "directories":{
+      "buildResources": "assets"
+    }
+  },
   "scripts": {
     "prod": "webpack --mode production --config webpack.build.config.js && electron --noDevServer .",
     "start": "webpack-dev-server --hot --host 0.0.0.0 --config=./webpack.dev.config.js --mode development",
     "build": "webpack --config webpack.build.config.js --mode production",
     "package": "npm run build",
+    "electron-pack": "build --em.main=build/electron.js",
     "postpackage": "electron-packager ./ --out=./builds"
   },
   "eslintConfig": {
@@ -55,4 +66,5 @@
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3"
   }
+  
 }
