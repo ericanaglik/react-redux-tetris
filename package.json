@@ -1,41 +1,44 @@
 {
   "name": "tetris",
-  "productName": "tetris",
-  "version": "1.0.0",
-  "homepage": "./",
-  "main": "main.js",
+  "description": "Tetris remake using react, redux and electron",
+  "author": "Erica Naglik",
+  "version": "0.2.7",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "electron-is-dev": "^1.2.0",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
+    "cross-env": "6.0.2",
+    "electron-is-dev": "1.1.0",
+    "electron-log": "^3.0.8",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
     "react-redux": "^7.2.0",
     "react-scripts": "3.4.1",
-    "redux": "^4.0.5"
+    "redux": "^4.0.5",
+    "update-electron-app": "^1.2.0"
+  },
+  "devDependencies": {
+    "concurrently": "4.1.2",
+    "electron": "6.0.11",
+    "electron-builder": "^21.2.0",
+    "prettier": "^1.4.4",
+    "react-scripts": "3.1.2",
+    "wait-on": "3.3.0"
   },
   "build": {
-    "appId": "com.example.electron-cra",
-    "files": [
-      "build/**/*",
-      "node_modules/**/*"
-    ],
-    "directories":{
-      "buildResources": "assets"
+    "publish": {
+      "provider": "github"
     }
   },
+  "main": "public/electron.js",
+  "homepage": "./",
   "scripts": {
-    "prod": "webpack --mode production --config webpack.build.config.js && electron --noDevServer .",
-    "start": "webpack-dev-server --hot --host 0.0.0.0 --config=./webpack.dev.config.js --mode development",
-    "build": "webpack --config webpack.build.config.js --mode production",
-    "package": "npm run build",
-    "electron-pack": "build --em.main=build/electron.js",
-    "postpackage": "electron-packager ./ --out=./builds"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
+    "react-start": "react-scripts start",
+    "react-build": "react-scripts build",
+    "react-test": "react-scripts test --env=jsdom",
+    "react-eject": "react-scripts eject",
+    "electron-build": "electron-builder",
+    "release": "yarn react-build && electron-builder --publish=always",
+    "build": "yarn react-build && yarn electron-build",
+    "start": "concurrently \"cross-env BROWSER=none yarn react-start\" \"wait-on http://localhost:3000 && electron .\""
   },
   "browserslist": {
     "production": [
@@ -48,23 +51,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "@babel/core": "^7.9.6",
-    "@babel/preset-react": "^7.9.4",
-    "babel-loader": "^8.1.0",
-    "babili-webpack-plugin": "^0.1.2",
-    "css-loader": "^3.5.3",
-    "electron": "^8.2.5",
-    "electron-builder": "^22.6.0",
-    "electron-devtools-installer": "^3.0.0",
-    "electron-packager": "^14.2.1",
-    "file-loader": "^6.0.0",
-    "html-webpack-plugin": "^4.3.0",
-    "mini-css-extract-plugin": "^0.9.0",
-    "style-loader": "^1.2.1",
-    "webpack-cli": "^3.3.11",
-    "webpack-dev-server": "^3.10.3"
   }
-  
 }
